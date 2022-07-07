@@ -1,14 +1,17 @@
 import React from 'react';
-import { View} from 'react-native';
+import { View, Image, Text} from 'react-native';
 import styles from './styles';
-import InputsRegister from '../InputsRegister';
-import TitleLogin from '../TitleLogin';
+import Background from '../../../assets/images/Pokeball-Header.png';
 
 const Header = () => {
   
     return (
-        <View style={styles.container}>
-        
+        <View>
+          <Image 
+            source={Background}
+            resizeMode= 'contain'
+            style={styles.backGroundImage} />  
+          <Text style={styles.title}>Pokedex</Text>
        </View>
     );
   };
