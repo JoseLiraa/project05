@@ -11,7 +11,8 @@ const styles = StyleSheet.create({
     },
     firstContainerCard:{
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
+        marginHorizontal: 10,
     },
     secondContainerCard:{        
         flexDirection: 'row',
@@ -20,7 +21,6 @@ const styles = StyleSheet.create({
     },
     namePokemon:{
         marginTop: 15,  
-        marginLeft: -15,
         fontSize: 17,
         fontWeight: 'bold',
         color: texts.white,      

@@ -1,0 +1,1 @@
+export const pokePath = "https://pokeapi.co/api/v2/";

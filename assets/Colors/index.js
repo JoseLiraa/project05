@@ -45,6 +45,7 @@ const texts = {
     white: '#FFFFFF',
     grey: '#747476',
     numberText: '#17171B',
+    gold: '#efb810'
 }
 
 export {typePoke, backgroundType, texts};

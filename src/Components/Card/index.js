@@ -5,13 +5,18 @@ import {typePoke, backgroundType, texts} from "../../../assets/Colors";
 import BackgroundCard from '../../../assets/images/Pokeball-Cards.png';
 
 const Card = ({item}) => {
+    //const { name, id } = item;
     const pokeType = item.types[0].type.name;  
+
+    const parseName = (name) => {
+       return name.charAt(0).toUpperCase() + name.slice(1)
+    }
 
     return (
         <View style={[styles.containerCard, {backgroundColor: backgroundType[pokeType]}]}> 
             <View style={styles.firstContainerCard}>
                 <Text style={styles.namePokemon}>
-                    {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
+                    {parseName(item.name)}
                 </Text>   
                 <Text style={styles.idPokemon}>
                     #{item.id}
@@ -20,11 +25,12 @@ const Card = ({item}) => {
             <View style={styles.secondContainerCard}>     
                 <View style={styles.typePokemonContainer}>
                     {item.types.map(({type}, index)=>{
-                        const pokeType2 = index == 0 ? item.types[0].type.name : item.types[1].type.name;
+                        const pokeType2 = index === 0 ? item.types[0].type.name : item.types[1].type.name;
+                        //mandar a otro componente lo que esta dentro del return 
                     return(
                         <View style={[styles.TypePokemon, {backgroundColor: typePoke[pokeType2]}]}>  
                             <Text style={styles.textTypePokemon} key={`${index}-${type}`}>
-                                {type.name.charAt(0).toUpperCase() + type.name.slice(1)}
+                                {parseName(type.name)}
                             </Text>
                         </View>
                     )  
@@ -43,7 +49,5 @@ const Card = ({item}) => {
         </View>      
     );
 };
-
-
 
 export default Card;
