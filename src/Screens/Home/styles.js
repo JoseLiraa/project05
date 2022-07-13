@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import {type, backgroundType, texts} from "../../../assets/Colors";
 
 const styles = StyleSheet.create({
     container:{     
@@ -10,10 +9,9 @@ const styles = StyleSheet.create({
         paddingBottom:40
     },
     activityIndicator: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '50%',        
-     }
+        flex: 1,
+        marginVertical: '50%',
+    }
     
 });
 

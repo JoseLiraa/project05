@@ -1,24 +1,30 @@
 import React, { useEffect } from "react";
-import Home from './src/Screens/Home'
+import Home from './src/Screens/Home';
+import Menu from "./src/Screens/Menu";
 import RNBootSplash from "react-native-bootsplash";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 
 function App(){  
-  //https://github.com/jhen0409/react-native-debugger
-  //zindex --> zindex:1 or zindex: 2 --> se muestra adelante el que tiene mayor valor
-  
+  const Stack = createNativeStackNavigator();
+
   useEffect(() => {
     const init = async () => {
     };
 
     init().finally(async () => {
       await RNBootSplash.hide({ fade: true });
-      console.log("Bootsplash has been hidden successfully");
     });
   }, []);
 
-
   return(
-      <Home />
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Menu" component={Menu} options={{headerShown: false}}/>
+        <Stack.Screen name="Home" component={Home} />
+      </Stack.Navigator>
+  </NavigationContainer>
     )
 }
 export default App;

@@ -4,63 +4,59 @@ import styles from './styles';
 import { texts } from '../../../assets/Colors';
 import Header from '../../Components/Header';
 import Card from '../../Components/Card';
-import { pokePath } from '../../Constans';
+import { pokePath, pokeQuery1, pokeQuery2 } from '../../Constans';
 
-const pokeQuery = "pokemon?limit=151&offset=0";
-const firstGenPoke = `${pokePath}${pokeQuery}`;
+const Home = ( {route} ) => {
+  const {generation} = route.params;
+  let generationPokemon = '';
 
-const Home = () => {
-  const [firstGenPokeDetails, setFirstGenPokeDetails] = useState([]);
+  const [GenPokeDetails, setGenPokeDetails] = useState([]);
   const [loadingIndicator, setLoadingIndicator] = useState(true);
-  const [pokeData, setPokeData] = useState([]);
-  const [counter, setCounter] = useState(20);
-
-  const getData = () => {    
-    setCounter(end => end + 10);
-
-  }
+  const [titleGeneration, setTitleGeneration] = useState('');  
 
   useEffect(() => {
-    const arrayPart = firstGenPokeDetails.slice(counter - 10, counter);
-    setPokeData(actualPoke => [...actualPoke, ...arrayPart]);
-  } ,[counter]);
+    const fetchGenPokemons = async () => {
+      generation === 'first' ? (setTitleGeneration('Pokedex | First Generation'), generationPokemon = `${pokePath}${pokeQuery1}`     
+      ) : (setTitleGeneration('Pokedex | Second Generation'), generationPokemon = `${pokePath}${pokeQuery2}`)
 
-  useEffect(() => {
-    const fetchfirstGenPokemons = async () => {
-      const firstGenPokeIdsResponse = await fetch(firstGenPoke).then(request => request.json()); 
+      const GenPokeIdsResponse = await fetch(generationPokemon).then(request => request.json()); 
       const pokeArray = [];
-      for(const firstGenPokeDetail of firstGenPokeIdsResponse.results){
-        const pokemonDetails = await fetch(firstGenPokeDetail.url).then(request => request.json());
+      for(const GenPokeDetail of GenPokeIdsResponse.results){
+        const pokemonDetails = await fetch(GenPokeDetail.url).then(request => request.json());
         pokeArray.push(pokemonDetails);
       }    
-      setFirstGenPokeDetails(pokeArray);    
-      const arrayPart = pokeArray.slice(0, counter);
-      setPokeData(arrayPart);      
+      setGenPokeDetails(pokeArray);          
       setLoadingIndicator(false);
     };
-    fetchfirstGenPokemons();
+    fetchGenPokemons();
   }, []);
 
   const keyExtractor = ( item, index ) => `${item}-${index}`;
   
     return (
       <View style={styles.container}>        
-        <Header />
-          {loadingIndicator ?(
-              <ActivityIndicator                
-                color = {texts.gold}
-                size = "large"
-                style = {styles.activityIndicator}/>             
-          ): (
+        <Header titleGeneration={titleGeneration}/>        
             <FlatList 
-            numColumns={2}  
-            contentContainerStyle={styles.list}          
-            data={pokeData} 
-            keyExtractor = {keyExtractor}
-            renderItem = {({item}) => <Card item={item}/>}  
-            onEndReached = {getData}     
-        />       
-          )}
+              contentContainerStyle={styles.list} 
+              data={GenPokeDetails} 
+              keyExtractor = {keyExtractor}
+              numColumns= {2}
+              initialNumToRender = {20}
+              maxToRenderPerBatch = {10}
+              renderItem = {({item}) => <Card item={item}/>} 
+              ListEmptyComponent = {() => (
+                <>
+                  {
+                    loadingIndicator && (
+                      <ActivityIndicator                
+                        color = {texts.gold}
+                        size = "large"
+                        style = {styles.activityIndicator}/>                     
+                    )
+                  }
+                </>
+              )}           
+            />       
     </View>
   );
 };
