@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { View, FlatList, ActivityIndicator} from 'react-native';
+import { View, FlatList, ActivityIndicator, TouchableOpacity} from 'react-native';
 import styles from './styles';
 import { texts } from '../../../assets/Colors';
 import Header from '../../Components/Header';
@@ -43,7 +43,12 @@ const Home = ( {route} ) => {
               numColumns= {2}
               initialNumToRender = {20}
               maxToRenderPerBatch = {10}
-              renderItem = {({item}) => <Card item={item}/>} 
+              renderItem = {({item}) => (
+                <TouchableOpacity
+                  onPress={()=>{console.log(item.name)}}>
+                  <Card item={item}/>
+                </TouchableOpacity>
+              )} 
               ListEmptyComponent = {() => (
                 <>
                   {

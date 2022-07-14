@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
         backgroundColor: backgroundType.fighting, 
     },
     secondCustomButtom:{
-        backgroundColor: typePoke.fighting,
+        backgroundColor: typePoke.psychic,
     }
 });
 

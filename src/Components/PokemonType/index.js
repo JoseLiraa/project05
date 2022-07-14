@@ -1,21 +1,17 @@
 import React from 'react';
-import { Image, Text } from 'react-native';
-import styles from './styles';
-import Background from '../../../assets/images/Pokeball-Header.png';
+import { View, Text } from 'react-native';
 
-const Header = ({titleGeneration}) => {
-  
+const PokemonType = ({customStyleContainer, customStyleText, keyType, typeName}) => {
+
     return (
         <>
-          <Image 
-            source={Background}
-            resizeMode= 'contain'
-            style={styles.backGroundImage} />  
-          <Text style={styles.title}>{titleGeneration}</Text>
+        <View style={customStyleContainer}>  
+            <Text style={customStyleText} key={keyType}>
+                {typeName}
+            </Text>
+        </View>
         </>
     );
-  };
+};
 
-
-
-export default Header;
+export default PokemonType;

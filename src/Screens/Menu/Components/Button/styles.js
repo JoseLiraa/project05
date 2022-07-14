@@ -15,6 +15,10 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 25,
     },
+    backGroundImage:{
+        width: 300,
+        height: 170,
+    }
 });
 
 export default styles;
