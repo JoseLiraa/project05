@@ -6,7 +6,7 @@ import Header from '../../Components/Header';
 import Card from '../../Components/Card';
 import { pokePath, pokeQuery1, pokeQuery2 } from '../../Constans';
 
-const Home = ( {route} ) => {
+const Home = ( {navigation, route} ) => {
   const {generation} = route.params;
   let generationPokemon = '';
 
@@ -45,7 +45,8 @@ const Home = ( {route} ) => {
               maxToRenderPerBatch = {10}
               renderItem = {({item}) => (
                 <TouchableOpacity
-                  onPress={()=>{console.log(item.name)}}>
+                activeOpacity={0.8} 
+                onPress={ () => navigation.navigate('PokemonDetails', {item: item})}>
                   <Card item={item}/>
                 </TouchableOpacity>
               )} 

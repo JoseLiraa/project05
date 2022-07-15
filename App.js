@@ -21,7 +21,7 @@ function App(){
 
   return(
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Menu">
         <Stack.Screen name="Menu" component={Menu} options={{headerShown: false}}/>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="PokemonDetails" component={PokemonDetails} />
