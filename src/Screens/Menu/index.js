@@ -7,12 +7,16 @@ import secondGeneration from '../../../assets/images/secondGeneration.png';
 
 
 const Menu = ({navigation}) => {
+    // se puede remplazar con useNavigation
+    const handleNavigation = (generation) => {
+        navigation.navigate('Home', { generation})
+    }
 
     return (
         <View style={styles.container}>              
             <TouchableOpacity 
                 activeOpacity={0.8} 
-                onPress={ () => navigation.navigate('Home', {generation: 'first'})}>
+                onPress={ () => handleNavigation('first')}>
                     <Button                         
                         info = 'First Generation' 
                         customStyleButton={styles.firstCustomButton}
@@ -21,7 +25,7 @@ const Menu = ({navigation}) => {
 
             <TouchableOpacity 
                 activeOpacity={0.8} 
-                onPress={ () => navigation.navigate('Home', {generation: 'second'})}>
+                onPress={ () => handleNavigation('second')}>
                     <Button                         
                         info = 'Second Generation' 
                         customStyleButton={styles.secondCustomButtom} 

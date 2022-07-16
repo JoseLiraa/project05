@@ -46,7 +46,7 @@ const Home = ( {navigation, route} ) => {
               renderItem = {({item}) => (
                 <TouchableOpacity
                 activeOpacity={0.8} 
-                onPress={ () => navigation.navigate('PokemonDetails', {item: item})}>
+                onPress={ () => navigation.navigate('PokemonDetails', {item})}>
                   <Card item={item}/>
                 </TouchableOpacity>
               )} 

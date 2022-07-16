@@ -24,7 +24,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginBottom: 15,
-    } 
+    },
+    activityIndicator: {
+        flex: 1,
+        marginVertical: '50%',
+    }
 });
 
 export default styles;

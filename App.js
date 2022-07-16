@@ -18,7 +18,7 @@ function App(){
       await RNBootSplash.hide({ fade: true });
     });
   }, []);
-
+ //en src/Navigation 
   return(
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Menu">

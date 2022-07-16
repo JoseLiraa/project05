@@ -8,7 +8,7 @@ import { parseName } from '../../Utils';
 
 const Card = ({item}) => {
     const pokeType = item.types[0].type.name;  
-
+// poner aca el touchOpacity
     return (
         <View style={[styles.containerCard, {backgroundColor: backgroundType[pokeType]}]}> 
             <View style={styles.firstContainerCard}>
