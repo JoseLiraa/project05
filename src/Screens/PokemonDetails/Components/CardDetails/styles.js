@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: texts.white,
     },
-
     backGroundImageCard: {   
         position: 'absolute',
         zIndex: 1,

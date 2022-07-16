@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Image, Text } from 'react-native';
 import styles from './styles';
-import { typePoke, backgroundType, texts} from '../../../../../assets/Colors';
+import { typePoke, backgroundType } from '../../../../../assets/Colors';
 import BackgroundCard from '../../../../../assets/images/Pokeball-Cards.png';
 import { parseName } from '../../../../Utils';
 import PokemonType from '../../../../Components/PokemonType';

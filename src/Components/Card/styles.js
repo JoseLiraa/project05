@@ -48,12 +48,14 @@ const styles = StyleSheet.create({
     },
     backGroundImageCard: {       
         position: 'absolute',
+        zIndex: 1,
         width: 125,
         height: 125,
         marginLeft: 60,
         marginTop: 10,
     },
     imagePokemon:{
+        zIndex: 2,
         width: 125,
         height: 125,
     },    

@@ -27,11 +27,6 @@ const Menu = ({navigation}) => {
                         customStyleButton={styles.secondCustomButtom} 
                         imageInfo = {secondGeneration}/>
             </TouchableOpacity>            
-
-            <TouchableOpacity                 
-                onPress={ () => navigation.navigate('PokemonDetails')}>
-                    <View><Text>Click aqui</Text></View>
-            </TouchableOpacity>       
         </View>
     );
 };

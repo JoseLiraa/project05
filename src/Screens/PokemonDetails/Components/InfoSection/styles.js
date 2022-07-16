@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { typePoke, backgroundType, texts } from "../../../../../assets/Colors";
+import { backgroundType, texts } from "../../../../../assets/Colors";
 
 const styles = StyleSheet.create({     
     infoWrapper:{
@@ -30,9 +30,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
+    pokeData2:{
+        marginTop: 15,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+    },
     evolutionWrapper:{
         marginTop: 5,
-    }, 
+    },    
     imagePokemonEvo:{
         width: 80,
         height: 80,
@@ -50,7 +55,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginBottom: 15,
-    } 
+    }, 
+    activityIndicator: {
+        flex: 1,
+        marginVertical: '50%',
+    }
 });
 
 export default styles;
