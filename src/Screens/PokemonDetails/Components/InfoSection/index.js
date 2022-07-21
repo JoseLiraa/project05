@@ -1,28 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { View, ActivityIndicator, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import styles from './styles';
 import { backgroundType } from '../../../../../assets/Colors';
 import EvolutionChain from '../EvolutionChain';
-import { getHeightOrWeight, parseName, getPath } from '../../../../Utils';
+import { getHeightOrWeight, parseName } from '../../../../Utils';
 import AboutPoke from '../AboutPoke';
-
+import {  axiosData } from '../../../../DataSource';
 
 const InfoSection = ({infoPokeDetails}) => {
 
     const pokeType = infoPokeDetails.types[0].type.name;
     const evolutionPokemon = infoPokeDetails.species.url;
     const [pokeEvoChain, setPokeEvoChain] = useState({});
-    const [loadingIndicator, setLoadingIndicator] = useState(true);
 
     useEffect(() =>{
-        const fetchPokeUrl = async () =>{
-            const response = await fetch(evolutionPokemon).then(request => request.json());
-            const dataEvolution = await fetch(response.evolution_chain.url).then(request => request.json());
-            const dataPokemon = {...response, ...dataEvolution};           
+        const axiosPokeUrl = async () =>{
+            const response = await axiosData({ method: 'get', url: evolutionPokemon });            
+            const dataEvolution = await axiosData( { method: 'get', url: response.data.evolution_chain.url});           
+            const dataPokemon = {...response.data, ...dataEvolution.data};           
             setPokeEvoChain(dataPokemon); 
-            setLoadingIndicator(false);
         };
-        fetchPokeUrl();
+        axiosPokeUrl();
     }, [])
 
     const pokeHeight = getHeightOrWeight(infoPokeDetails.height);

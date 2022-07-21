@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { View, Image, Text, ActivityIndicator } from 'react-native';
-import { texts } from '../../../assets/Colors';
 import styles from './styles';
 import Arrow from '../../../../../assets/images/arrow.png';
 import { parseName, getPath } from '../../../../Utils';
+import { axiosData } from '../../../../DataSource';
+
 
 const EvolutionChain = ({item, colorType}) => {
 
@@ -18,22 +19,22 @@ const EvolutionChain = ({item, colorType}) => {
     let firstResponse, secondResponse, thirdResponse;
 
     useEffect(() => {
-        const fetchPoke = async () =>{
+        const axiosPoke = async () =>{
             if(!!first){
-                firstResponse = await fetch(first).then(request => request.json());
+                firstResponse = await axiosData({ method: 'get', url: first});
             }
             if(!!second){
-                secondResponse = await fetch(second).then(request => request.json());
+                secondResponse = await axiosData({ method: 'get', url: second});
             }
             if(!!third){
-                thirdResponse = await fetch(third).then(request => request.json());
+                thirdResponse = await axiosData({ method: 'get', url: third});
             }            
-            setPokeEvoDataOne(firstResponse);
-            setPokeEvoDataTwo(secondResponse);
-            setPokeEvoDataThree(thirdResponse);
+            setPokeEvoDataOne(firstResponse.data);
+            setPokeEvoDataTwo(secondResponse.data);
+            setPokeEvoDataThree(thirdResponse.data);
             setLoadingIndicator(false);
         }; 
-        fetchPoke();
+        axiosPoke();
     }, [first, second, third])
 
     return (  

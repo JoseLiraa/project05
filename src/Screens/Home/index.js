@@ -4,7 +4,8 @@ import styles from './styles';
 import { texts } from '../../../assets/Colors';
 import Header from '../../Components/Header';
 import Card from '../../Components/Card';
-import { pokePath, pokeQuery1, pokeQuery2 } from '../../Constans';
+import { pokeQuery1, pokeQuery2 } from '../../Constans';
+import { axiosData } from '../../DataSource';
 
 const Home = ( {navigation, route} ) => {
   const {generation} = route.params;
@@ -14,21 +15,22 @@ const Home = ( {navigation, route} ) => {
   const [loadingIndicator, setLoadingIndicator] = useState(true);
   const [titleGeneration, setTitleGeneration] = useState('');  
 
-  useEffect(() => {
-    const fetchGenPokemons = async () => {
-      generation === 'first' ? (setTitleGeneration('Pokedex | First Generation'), generationPokemon = `${pokePath}${pokeQuery1}`     
-      ) : (setTitleGeneration('Pokedex | Second Generation'), generationPokemon = `${pokePath}${pokeQuery2}`)
 
-      const GenPokeIdsResponse = await fetch(generationPokemon).then(request => request.json()); 
+  useEffect(() => {
+    const GetPokemons = async () => {
+      generation === 'first' ? (setTitleGeneration('Pokedex | First Generation'), generationPokemon = `${pokeQuery1}`     
+      ) : (setTitleGeneration('Pokedex | Second Generation'), generationPokemon = `${pokeQuery2}`)
+
+      const GenPokeIdsResponse = await axiosData({ method: 'get', url: generationPokemon });
       const pokeArray = [];
-      for(const GenPokeDetail of GenPokeIdsResponse.results){
-        const pokemonDetails = await fetch(GenPokeDetail.url).then(request => request.json());
-        pokeArray.push(pokemonDetails);
+      for(const GenPokeDetail of GenPokeIdsResponse.data.results){        
+        const pokemonDetails = await axiosData({ method: 'get', url: GenPokeDetail.url });
+        pokeArray.push(pokemonDetails.data);        
       }    
-      setGenPokeDetails(pokeArray);          
+      setGenPokeDetails(pokeArray);
       setLoadingIndicator(false);
     };
-    fetchGenPokemons();
+    GetPokemons();
   }, []);
 
   const keyExtractor = ( item, index ) => `${item}-${index}`;

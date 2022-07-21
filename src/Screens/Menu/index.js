@@ -1,10 +1,9 @@
 import React from 'react';
-import { View, TouchableOpacity, Text } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import Button from './Components/Button';
 import firstGeneration from '../../../assets/images/firstGeneration.png';
 import secondGeneration from '../../../assets/images/secondGeneration.png';
-
 
 const Menu = ({navigation}) => {
     // se puede remplazar con useNavigation
