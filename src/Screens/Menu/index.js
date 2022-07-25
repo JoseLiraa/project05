@@ -4,8 +4,10 @@ import styles from './styles';
 import Button from './Components/Button';
 import firstGeneration from '../../../assets/images/firstGeneration.png';
 import secondGeneration from '../../../assets/images/secondGeneration.png';
+import { useNavigation } from '@react-navigation/native';
 
 const Menu = ({navigation}) => {
+   //  const navi = useNavigation();
     // se puede remplazar con useNavigation
     const handleNavigation = (generation) => {
         navigation.navigate('Home', { generation})

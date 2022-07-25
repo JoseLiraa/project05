@@ -5,11 +5,11 @@ import CardDetails from './Components/CardDetails';
 import InfoSection from './Components/InfoSection';
 
 const PokemonDetails = ({route}) => {
-    const {item} = route.params;     
+    const {item} = route.params;      
 
     return (
         <View style={styles.container}>              
-            <CardDetails infoPokeDetails ={item}/>
+            <CardDetails key= {item} infoPokeDetails ={item}/>
             <InfoSection infoPokeDetails ={item} />
         </View>
     );

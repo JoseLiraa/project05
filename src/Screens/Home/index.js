@@ -6,8 +6,10 @@ import Header from '../../Components/Header';
 import Card from '../../Components/Card';
 import { pokeQuery1, pokeQuery2 } from '../../Constans';
 import { axiosData } from '../../DataSource';
+//import { useNavigation } from '@react-navigation/native';
 
 const Home = ( {navigation, route} ) => {
+  //let navi = useNavigation();
   const {generation} = route.params;
   let generationPokemon = '';
 
@@ -49,7 +51,7 @@ const Home = ( {navigation, route} ) => {
                 <TouchableOpacity
                 activeOpacity={0.8} 
                 onPress={ () => navigation.navigate('PokemonDetails', {item})}>
-                  <Card item={item}/>
+                  <Card key= {keyExtractor} item={item}/>
                 </TouchableOpacity>
               )} 
               ListEmptyComponent = {() => (
